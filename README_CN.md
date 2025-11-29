@@ -200,11 +200,22 @@
 出于商业友好性和跨平台支持的考虑，我们推荐使用 miniforge 来安装和管理 Python 环境。官方网址：https://github.com/conda-forge/miniforge
 
 - **Windows 用户**：
-  1. 使用命令行下载并安装 miniforge：
-```powershell
-# 下载并安装 Miniforge3 Windows 版本
-start /wait "" Miniforge3-Windows-x86_64.exe /InstallationType=JustMe /RegisterPython=0 /S /D=%UserProfile%\Miniforge3
-``` 
+
+1. 直接下载并手动安装miniforge 即可。 参加：https://github.com/conda-forge/miniforge Install章节。安装过程中需要注意勾选，将conda 加入PATH 的选项，以确保conda 能够被正确激活。
+
+2. 安装完成后需要激活conda，powershell 后输入：
+```bash
+# 在powershell 中激活conda
+conda init powershell
+
+# 允许conda 脚本随powershell 启动
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+激活成功后可见“(base)” 括号显示在最新一行的开头。
+
+3. 执行和调试代码建议使用vs code，可在官网下载安装：https://code.visualstudio.com/ 
+
 
 - **Mac 和 Linux 用户**：
   1. 使用命令行下载并安装 miniforge：
@@ -227,13 +238,15 @@ conda activate gelab-zero
 <!-- https://ollama.com/ -->
 
 对于做本地推理的个人用户，我们强烈推荐使用 Ollama 方式进行本地部署，该方式具有安装简单、使用便捷的优势。
-- Mac 和 Windows 用户可直接前往官网下载安装图形化版本：https://ollama.com/。
-- Linux 用户可参考官方文档进行安装：https://ollama.com/download/linux。Linux 用户的一键安装命令如下：
 
+
+- **Windows 和 Mac 用户**: 可直接前往官网下载安装图形化版本：https://ollama.com/。
+
+- **Linux 用户**: 可参考官方文档进行安装：https://ollama.com/download/linux。Linux 用户的一键安装命令如下：
 ```bash
 # 下载并安装 Linux 最新版 Ollama AppImage
 curl -fsSL https://ollama.com/install.sh | sh
-````
+```
 
 #### Step 1.2: GELab-Zero-4B-preview 模型部署
 
@@ -243,15 +256,40 @@ curl -fsSL https://ollama.com/install.sh | sh
 # 若尚未安装 huggingface cli，先执行此命令
 pip install huggingface_hub
 
+# 如果在国内下载速度较慢，可以尝试使用 镜像加速 "https://hf-mirror.com"
+
+# WINDOWS 用户可以使用以下命令:
+# $env:HF_ENDPOINT = "https://hf-mirror.com"
+
+# LINUX 和 MAC 用户可以使用以下命令:
+# export HF_ENDPOINT="https://hf-mirror.com"
+
 # 从 huggingface 下载 gelab-zero-4b-preview 模型权重
-huggingface-cli download --resume-download stepfun-ai/GELab-Zero-4B-preview --local-dir gelab-zero-4b-preview
+hf download --no-force-download stepfun-ai/GELab-Zero-4B-preview --local-dir gelab-zero-4b-preview
+
 
 # 将模型导入 ollama
 cd gelab-zero-4b-preview
 ollama create gelab-zero-4b-preview -f Modelfile
+# windows 用户如遇报错，需要指定安装路径，例如：
+# C:\Users\admin\AppData\Local\Programs\Ollama\ollama.exe create gelab-zero-4b-preview -f Modelfile
+
+# 如果电脑配置较低，可以考虑量化模型以提升推理速度。注意，量化可能会带来一定的模型性能损失。
+# 文档详细见：https://docs.ollama.com/import#quantizing-a-model
+
+# 使用int8 精度量化模型（精度损失较小，模型尺寸变为4.4G ）：
+ollama create -q q8_0 gelab-zero-4b-preview 
+
+# 使用int4 精度量化模型（精度损失较大，模型尺寸变为2.2G ）：
+ollama create -q q4_0 gelab-zero-4b-preview
+
+# 换回原始精度：
+ollama create -q f16 gelab-zero-4b-preview
 ```
 
-你可以通过下面的命令测试模型是否安装成功：
+- **Windows 用户**： 可以打开ollama app，选择模型 gelab-zero-4b-preview，发一条消息测试模型是否能够正确回复。
+
+- **Mac 和 Linux 用户**： 可以通过下面的命令测试模型是否安装成功：
 ```bash
 curl -X POST http://localhost:11434/v1/chat/completions \
  -H "Content-Type: application/json" \
@@ -299,7 +337,7 @@ ADB（Android Debug Bridge，安卓调试桥）是连接安卓设备与电脑进
 
 - **Windows 用户**：
   1. 下载 ADB 工具压缩包：https://dl.google.com/android/repository/platform-tools-latest-windows.zip 并解压到合适的位置。
-  2. 将解压后的文件夹路径加入系统环境变量，这样就可以在命令行中直接使用 adb 命令。详细步骤参见：https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14)。具体包括：
+  2. 将解压后的文件夹路径加入系统环境变量，这样就可以在命令行中直接使用 adb 命令。详细步骤参见：https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14) 。具体包括：
 ```
 1. 在「开始」菜单中右键点击「计算机」，选择「属性」。
 2. 点击「高级系统设置」。
@@ -366,7 +404,12 @@ python examples/run_single_task.py
 任务轨迹会默认保存在 `running_log/server_log/os-copilot-local-eval-logs/` 目录下。你可以使用 streamlit 对轨迹进行可视化：
 
 ```bash
+# 如果想让局域网内其他设备也能访问，可使用 --server.address 0.0.0.0
 streamlit run --server.address 0.0.0.0 visualization/main_page.py --server.port 33503
+
+# 如果只想在本机访问，可使用以下命令：
+streamlit run --server.address 127.0.0.1 visualization/main_page.py --server.port 33503
+
 ```
 
 然后在浏览器中访问 `http://localhost:33503` 即可进入可视化界面。

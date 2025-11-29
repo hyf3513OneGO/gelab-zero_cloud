@@ -219,12 +219,21 @@ For commercial friendliness and cross-platform support, we recommend using minif
 <!-- EN -->
 
 - **Windows Users**:
-  1. Download and install miniforge using the command line:
 
-```powershell
-# Download and install Miniforge3 Windows version
-start /wait "" Miniforge3-Windows-x86_64.exe /InstallationType=JustMe /RegisterPython=0 /S /D=%UserProfile%\Miniforge3
+1. Directly download and manually install Miniforge. Refer to the **Install** section at: https://github.com/conda-forge/miniforge. During installation, ensure to check the option to add Conda to the **PATH** environment variable to guarantee proper activation of Conda.
+
+2. After installation, activate Conda. Open PowerShell and enter the following commands:
+```bash
+# Activate Conda in PowerShell
+conda init powershell
+
+# Allow Conda scripts to run on PowerShell startup
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
+
+Successful activation is indicated by "(base)" displayed at the beginning of the latest line in the terminal.
+
+3. It is recommended to use VS Code for code execution and debugging. Download and install it from the official website: https://code.visualstudio.com/
 
 <!-- EN -->
 
@@ -252,36 +261,58 @@ We have verified two mainstream LLM local inference deployment methods: ollama a
 <!-- https://ollama.com/ -->
 
 <!-- EN -->
+For individual users conducting local inference, we strongly recommend using Ollama for local deployment, as it offers the advantages of simple installation and easy usage.
 
-For personal users doing local inference, we strongly recommend using the Ollama method for local deployment. This method has the advantages of simple installation and convenient use.
+- **Windows and Mac users**: You can directly download and install the graphical version from the official website: https://ollama.com/.
 
-- MAC and Windows users can directly download from the official website and install visually: https://ollama.com/.
-- Linux users can refer to the official documentation for installation: https://ollama.com/download/linux. The one-click installation command for Linux users is as follows:
-
+- **Linux users**: Refer to the official documentation for installation: https://ollama.com/download/linux. The one-click installation command for Linux users is as follows:
 ```bash
-# Download the latest Ollama AppImage for Linux
+# Download and install the latest Linux version of Ollama AppImage
 curl -fsSL https://ollama.com/install.sh | sh
-````
+```
 
 #### Step 1.2: GELab-Zero-4B-preview Model Setup
 
-<!-- EN -->
-
-After completing the ollama installation, you need to download and deploy the gelab-zero-4b-preview model using the following commands:
+After completing the installation of Ollama, you need to download and deploy the gelab-zero-4b-preview model using the following commands:
 
 ```bash
-# To install huggingface cli if you don't have it
+# If huggingface cli is not installed yet, execute this command first
 pip install huggingface_hub
 
-# Download and install gelab-zero-4b-preview model
-huggingface-cli download --resume-download stepfun-ai/GELab-Zero-4B-preview --local-dir gelab-zero-4b-preview
+# If the download speed is slow in China, you can try using the mirror acceleration "https://hf-mirror.com"
+
+# WINDOWS users can use the following command:
+# $env:HF_ENDPOINT = "https://hf-mirror.com"
+
+# LINUX and MAC users can use the following command:
+# export HF_ENDPOINT="https://hf-mirror.com"
+
+# Download the gelab-zero-4b-preview model weights from huggingface
+hf download --no-force-download stepfun-ai/GELab-Zero-4B-preview --local-dir gelab-zero-4b-preview
+
 
 # Import the model into ollama
 cd gelab-zero-4b-preview
 ollama create gelab-zero-4b-preview -f Modelfile
+# If Windows users encounter an error, they need to specify the installation path, for example:
+# C:\Users\admin\AppData\Local\Programs\Ollama\ollama.exe create gelab-zero-4b-preview -f Modelfile
+
+# If your computer has low configuration, you may consider quantizing the model to improve inference speed. Note that quantization may cause a certain loss of model performance.
+# For detailed documentation, see: https://docs.ollama.com/import#quantizing-a-model
+
+# Quantize the model with int8 precision (small precision loss, model size becomes 4.4G):
+ollama create -q q8_0 gelab-zero-4b-preview 
+
+# Quantize the model with int4 precision (large precision loss, model size becomes 2.2G):
+ollama create -q q4_0 gelab-zero-4b-preview
+
+# Revert to the original precision:
+ollama create -q f16 gelab-zero-4b-preview
 ```
 
-To test if the model is installed successfully, you can use the following command:
+- **Windows users**: You can open the Ollama app, select the model gelab-zero-4b-preview, and send a message to test whether the model can reply correctly.
+
+- **Mac and Linux users**: You can test whether the model is installed successfully using the following command:
 
 ```bash
 curl -X POST http://localhost:11434/v1/chat/completions \
@@ -335,7 +366,7 @@ ADB (Android Debug Bridge) is a bridge tool for communication between Android de
 
 - **Windows Users**:
   1. Download the ADB tool package: https://dl.google.com/android/repository/platform-tools-latest-windows.zip and extract it to a suitable location.
-  2. Add the extracted folder path to the system environment variables so that you can use the adb command directly in the command line. For detailed steps, see: https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14). The specific steps include:
+  2. Add the extracted folder path to the system environment variables so that you can use the adb command directly in the command line. For detailed steps, see: https://learn.microsoft.com/en-us/previous-versions/office/developer/sharepoint-2010/ee537574(v=office.14) .The specific steps include:
 
 ```
 1. Right-click "Computer" in the "Start" menu and select "Properties."
@@ -409,7 +440,11 @@ python examples/run_single_task.py
 The trajectory will be defult saved in the `running_log/server_log/os-copilot-local-eval-logs/` directory. You can visualize the trajectory using streamlit:
 
 ```bash
+# If you want other devices in the local area network (LAN) to access it, use --server.address 0.0.0.0
 streamlit run --server.address 0.0.0.0 visualization/main_page.py --server.port 33503
+
+# If you only want to access it on the local machine, use the following command:
+streamlit run --server.address 127.0.0.1 visualization/main_page.py --server.port 33503
 ```
 
 Then open your browser and go to `http://localhost:33503` to access the visualization interface.
