@@ -486,3 +486,8 @@ You can contact us and communicate with us by joining our WeChat group:
 | WeChat Group |
 |:-------------------------:|
 | <img src="images/wechat_group.jpeg" width="200" height="400"> |
+
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=stepfun-ai/gelab-zero&type=Date)](https://star-history.com/#stepfun-ai/gelab-zero&Date)
+
