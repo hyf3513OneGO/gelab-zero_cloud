@@ -198,11 +198,23 @@ def _detect_screen_orientation(device_id):
     if os.name == 'nt':
         # Windows
         command = f'{adb_command}' + ''' shell dumpsys input | Select-String 'orientation=\d+' | Select -First 1 | % { $_.Matches.Value -replace 'orientation=', '' }'''
+        
+        # 使用 subprocess 运行 PowerShell 命令
+        result = subprocess.run(
+            ["powershell.exe", "-Command", command],  # 核心参数
+            capture_output=True,  # 捕获 stdout/stderr（可选）
+            encoding="utf-8",     # 编码（避免乱码）
+            shell=False,          # 无需开启 shell（PowerShell 本身就是解释器）
+            check=False           # 是否抛出非0退出码异常（可选）
+        )
+
     else:
         # Unix/Linux/Mac
         command = f'''{adb_command} shell dumpsys input | grep -m 1 -o -E "orientation=[0-9]" | head -n 1 | grep -m 1 -o -E "[0-9]"'''
 
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+
+
     result_str = result.stdout.strip()
 
     result = int(result_str.strip())
