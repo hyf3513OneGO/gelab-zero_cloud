@@ -4,7 +4,7 @@
 
 <p align="center">
   <!-- <a href="https://github.com/stepfun-ai/gelab-zero"><img src="https://img.shields.io/badge/💻%20GitHub-Repository-black" alt="GitHub" /></a> -->
-  <a href="https://arxiv.org/abs/2512.15431"><img src="https://img.shields.io/badge/📄%20arXiv-Paper-red" alt="arXiv" /></a>
+  <a href="https://arxiv.org/abs/2512.15431"><img src="https://img.shields.io/badge/arXiv-Step--GUI Technical Report-B31B1B.svg?logo=arxiv&logoColor=white" alt="arXiv" /></a>
   <a href="https://opengelab.github.io/"><img src="https://img.shields.io/badge/🌐%20Website-Project%20Page-blue" alt="Website" /></a>
   <a href="https://huggingface.co/stepfun-ai/GELab-Zero-4B-preview"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-GELab--Zero--4B--preview-orange" alt="Hugging Face Model" /></a>
   <a href="https://huggingface.co/datasets/stepfun-ai/AndroidDaily"><img src="https://img.shields.io/badge/📚%20Hugging%20Face-AndroidDaily-yellow" alt="Hugging Face Dataset" /></a>
@@ -18,63 +18,50 @@
 
 ## 📰 News
 
-* 🎁 **[2025-12-18]** We release our technical report on [**arXiv**](https://arxiv.org/abs/2512.15431)! Check out the details of GELab-Zero's architecture, training process, and benchmark results.
-* 🎁 **[2025-12-18]** We release a more powerful **API model** with enhanced performance for GUI automation tasks. [Apply for API access here](https://wvixbzgc0u7.feishu.cn/share/base/form/shrcnNStxEmuE7aY6jTW07CZHMf)!
+* 🎁 **[2025-12-18]** We release **Step-GUI Technical Report** on [**arXiv**](https://arxiv.org/abs/2512.15431)!
+* 🎁 **[2025-12-18]** We release a more powerful **API** for GUI automation tasks. [Apply for API access here](https://wvixbzgc0u7.feishu.cn/share/base/form/shrcnNStxEmuE7aY6jTW07CZHMf)!
+* 🎁 **[2025-12-12]** We release **MCP-Server** support for multi-device management and task distribution. See [Installation & Quick Start](#-installation-quick-start) for setup instructions.
+* 🎁 **[2025-12-1]** We thank the following projects and authors for providing quantization tools & tutorials: [GGUF_v1](https://huggingface.co/bartowski/stepfun-ai_GELab-Zero-4B-preview-GGUF), [GGUF_v2](https://huggingface.co/noctrex/GELab-Zero-4B-preview-GGUF), [EXL3](https://huggingface.co/ArtusDev/stepfun-ai_GELab-Zero-4B-preview-EXL3), [Tutorials_CN](http://xhslink.com/o/1WrmgHGWFYh), [Tutorials_EN](https://www.youtube.com/watch?v=4BMiDyQOpos)
+* 🎁 **[2025-11-31]** We release a lightweight **4B** model GELab-Zero-4B-preview on [**Hugging Face**](https://huggingface.co/stepfun-ai/GELab-Zero-4B-preview) and [**Model Scope**](https://modelscope.cn/models/stepfun-ai/GELab-Zero-4B-preview).
+* 🎁 **[2025-11-31]** We release the tasks from the [**AndroidDaily**](https://huggingface.co/datasets/stepfun-ai/AndroidDaily) benchmark.
+* 🎁 **[2025-11-30]** We release the current **GELab-Zero** engineering infrastructure.
+* 🎁 **[2025-10]** Our [**research**](https://github.com/summoneryhl/gelab-engine) paper on GELab-Engine is accepted by **NeurIPS 2025**.
 
-* 🎁 **[2025-12-12]** MCP-Server ready：
-
-<!-- ### Step1 启动 mcp server 以支持多设备管理和任务分发 -->
-### Step1 Start MCP server to support multi-device management and task distribution
-
-```bash
-# enable mcp server
-python mcp_server/detailed_gelab_mcp_server.py
-```
-
-### Step2 Import MCP tools in Chatbox
-<!-- images/MCP-chatbox.png -->
-<div style="display: flex; align-items: center; justify-content: center; width: 80%; margin: 0 auto;">
-  <img src="images/MCP-chatbox.png" alt="MCP-Demo" style="flex: 1; height: 400px; object-fit: contain; margin-right: 1px;"/>
-</div>
-
-
-
-* 🎁 **[2025-12]** We thank the following projects and authors for providing quantization tools & tutorials: [GGUF_v1](https://huggingface.co/bartowski/stepfun-ai_GELab-Zero-4B-preview-GGUF), [GGUF_v2](https://huggingface.co/noctrex/GELab-Zero-4B-preview-GGUF), [EXL3](https://huggingface.co/ArtusDev/stepfun-ai_GELab-Zero-4B-preview-EXL3), [Tutorials_CN](http://xhslink.com/o/1WrmgHGWFYh), [Tutorials_EN](https://www.youtube.com/watch?v=4BMiDyQOpos)
-* 🎁 **[2025-11]** We release a lightweight **4B model** on [**Hugging Face**](https://huggingface.co/stepfun-ai/GELab-Zero-4B-preview) and [**Model Scope**](https://modelscope.cn/models/stepfun-ai/GELab-Zero-4B-preview).
-* 🎁 **[2025-11]** We release the tasks from the [**AndroidDaily**](https://huggingface.co/datasets/stepfun-ai/AndroidDaily) benchmark.
-* 🎁 **[2025-11]** We release the current **GELab-Zero** engineering infrastructure.
-* 🎁 **[2025-10]** Our [research](https://github.com/summoneryhl/gelab-engine) paper on **GELab-Engine** is accepted by **NeurIPS 2025**.
 
 
 ## 📑 Table of Contents
 
 - [📖 Background](#-background)
 - [🎥 Application Demonstrations](#-application-demonstrations)
-- [📊 AndroidDaily](#-androiddaily-a-self-built-benchmark-close-to-daily-life)
 - [🏆 Open Benchmark](#-open-benchmark)
 - [🚀 Installation & Quick Start](#-installation-quick-start)
 - [📝 Citation](#-citation)
-- [📧 Contact](#-contact)
+
+
+## 📧 Contact
+
+You can contact us and communicate with us by joining our WeChat group:
+
+| WeChat Group |
+|:-------------------------:|
+| <img src="images/wechat_group2.jpeg" width="200"> |
+
+
 
 ## 📖 Background
+As AI experiences increasingly penetrate consumer-grade devices, Mobile Agent research is at a critical juncture: transitioning from **"feasibility verification"** to **"large-scale application."** While GUI-based solutions offer universal compatibility, the fragmentation of mobile ecosystems imposes heavy engineering burdens that hinder innovation. GELab-Zero is designed to dismantle these barriers.
 
-As AI experiences continue to penetrate consumer-grade terminal devices, mobile Agent research is at a critical juncture transitioning from "feasibility verification" to "large-scale application." GUI-based solutions have emerged as the optimal approach for the current stage in addressing complex mobile ecosystems and achieving scalable Agent capabilities, thanks to their universal compatibility with all apps and zero-cost integration without requiring app vendor adaptation. However, due to the highly fragmented nature of mobile application ecosystems, getting GUI Agents to truly work across different brands and device models often faces numerous engineering challenges: multi-device ADB connections, dependency installation, permission configuration, inference service deployment, task recording and replay. This means Agent developers and MCP users need to handle substantial engineering infrastructure work, making it difficult to focus on strategic innovation.
+* ⚡️ **Out-of-the-Box Full-Stack Infrastructure** 
+Resolves the fragmentation of the mobile ecosystem with a unified, one-click inference pipeline. It automatically handles multi-device ADB connections, dependencies, and permissions, allowing developers to focus on strategic innovation rather than engineering infrastructure.
 
-To address this challenge, we are open-sourcing GELab-Zero to accelerate the innovation and application deployment of GUI Agents. It consists of two main components:
+* 🖥️ **Consumer-Grade Local Deployment** 
+Features a built-in 4B GUI Agent model **fully optimized for Mac (M-series) and NVIDIA RTX 4060**. It supports complete local execution, ensuring data privacy and low latency on standard consumer hardware.
 
-- Plug-and-play complete inference engineering infrastructure that handles all the heavy lifting
-- A 4B GUI Agent model capable of running on local computer
+* 📱 **Flexible Task Distribution & Orchestration** 
+Supports distributing tasks across multiple devices with interaction trajectory recording. It offers three versatile modes—ReAct loops, multi-agent collaboration, and scheduled tasks—to handle complex, real-world business scenarios.
 
-It provides a one-click launch experience similar to open-source GUI Agent MCP, can be deployed entirely locally, and puts the entire inference pipeline under your complete control. Specific capabilities include:
-
-- **Local Deployment**: Supports 4B-scale models running on consumer-grade hardware, balancing low latency with privacy.
-- **One-click Launch**: Provides unified deployment pipeline that automatically handles environment dependencies and device management.
-- **Task Distribution**: Can distribute tasks to multiple phones while recording interaction trajectories for observability and reproducibility.
-- **Three Agent Modes**: Covers multiple working modes including ReAct loops, multi-agent collaboration, and scheduled tasks.
-
-These capabilities enable GELab-Zero to flexibly handle complex task flows in real-world scenarios and provide a solid foundation for future extensions.
-
-For Agent developers, this infrastructure enables rapid testing of new ideas and strategies, validating interaction approaches; for enterprise users, it allows direct reuse of this infrastructure to quickly integrate MCP capabilities into product business.
+* 🚀 **Accelerate from Prototype to Production** 
+Empowers developers to rapidly validate interaction strategies while allowing enterprises to directly reuse the underlying infrastructure for zero-cost MCP integration, bridging the critical gap between "feasibility verification" and "large-scale application."
 
 ## 🎥 Application Demonstrations
 
@@ -162,54 +149,6 @@ Task: Go to Baicizhan and help me complete the vocabulary learning task
 
 **[📹 Click to view demo video](./images/video_8.mp4)**
 
-
-## 📊 AndroidDaily: A Self-Built Benchmark Close to Daily Life
-
-Current mainstream benchmarks mostly focus on productivity applications (such as email), but users' daily high-frequency usage is dominated by lifestyle service applications (such as food delivery, ride-hailing, social media, payments, etc.), and these scenarios better reflect the practical value of current GUI Agents.
-
-To this end, we propose AndroidDaily: a multi-dimensional dynamic benchmark for the real world. We focus on empirical analysis of six core dimensions of modern life (food, transportation, shopping, housing, information consumption, entertainment), prioritizing popular applications that dominate these categories. This makes the tasks in the benchmark characterized by real-world interaction results (such as transaction payments, service bookings) and tight online-offline inheritance.
-
-To balance evaluation comprehensiveness and execution efficiency, AndroidDaily adopts two evaluation modes:
-
-### Static Testing
-
-Contains 3146 actions. Provides task descriptions and step-by-step screenshots, requiring the Agent to predict the action type and action value (such as click coordinates, input text) for each step, primarily evaluating numerical accuracy. This method requires no complex engineering infrastructure and enables rapid, cost-effective large-scale model iteration and testing.
-
-The action type distribution in static testing is as follows (total 3146 actions):
-
-- **CLICK**: 1354 times - Click operations
-- **COMPLETE**: 410 times - Task completion
-- **AWAKE**: 528 times - App activation
-- **TYPE**: 371 times - Text input
-- **INFO**: 305 times - Information query
-- **WAIT**: 85 times - Wait operations
-- **SLIDE**: 93 times - Slide operations
-
-#### AndroidDaily Static Benchmark Results
-
-
-| Model                   | Accuracy  |
-| ------------------------- | ----------- |
-| GPT-4o                  | 0.196     |
-| Gemini-2.5-pro-thinking | 0.366     |
-| UI-TARS-1.5             | 0.470     |
-| GELab-Zero-4B-preview   | **0.734** |
-
-### End-to-End Benchmark
-
-Contains 235 tasks. Conducted in a fully functional test environment (such as real devices or emulators), the Agent needs to autonomously execute tasks from start to finish, with overall task success rate as the evaluation metric. This setup has the highest ecological validity and truly reflects the Agent's comprehensive capabilities in complex environments.
-
-The scenario distribution in the end-to-end benchmark is as follows:
-
-- **Transportation**: 78 tasks (33.19%) - Ride-hailing, navigation, public transit, etc.
-- **Shopping**: 61 tasks (25.96%) - E-commerce shopping, payment, order management, etc.
-- **Social Communication**: 43 tasks (18.3%) - Messaging, social interactions, etc.
-- **Content Consumption**: 37 tasks (15.74%) - News reading, video watching, content bookmarking, etc.
-- **Local Services**: 16 tasks (6.81%) - Food delivery, on-site services, etc.
-
-![Scene Distribution](./images/Scenario.png)
-
-Typical tasks include ride-hailing, shopping, message sending, content bookmarking, food delivery ordering, etc. GELab-Zero-4B-preview achieves 75.86% success rate on AndroidWorld testing, demonstrating excellent performance on complex mobile tasks.
 
 ## 🏆 Open Benchmark
 
@@ -528,23 +467,23 @@ Download the [Jan](https://github.com/janhq/jan/releases) client and install it.
 
 Go to Settings → Model Provider → choose llama.cpp, then import the models:
 
-![Import model](images/jan_1.png)
+<img src="images/jan_1.png" width="50%" alt="test model">
 
 Select the two GGUF files you just converted:
 
-![Import model](images/jan_2.png)
+<img src="images/jan_2.png" width="50%" alt="test model">
 
 Back in the model UI, click `Start`.
 
 Create a chat to verify the model runs correctly:
 
-![test model](images/jan_3.png)
+<img src="images/jan_3.png" width="50%" alt="test model">
 
 Once tokens are streaming normally, start the local API server.
 
 Go to Settings → Local API Server, create an API key under server configuration, then launch the service:
 
-![make API service](images/jan_4.png)
+<img src="images/jan_4.png" width="50%" alt="test model">
 
 #### Step 3: Adjust GELab-Zero Agent model config
 
@@ -576,11 +515,39 @@ local_model_config = {
 
 ---
 
+### (Optional) MCP-Server Setup
+
+<!-- ### Step1 启动 mcp server 以支持多设备管理和任务分发 -->
+#### Step 1: Start MCP server to support multi-device management and task distribution
+
+```bash
+# enable mcp server
+python mcp_server/detailed_gelab_mcp_server.py
+```
+
+#### Step 2: Import MCP tools in Chatbox
+<!-- images/MCP-chatbox.png -->
+<div style="display: flex; align-items: center; justify-content: center; width: 80%; margin: 0 auto;">
+  <img src="images/MCP-chatbox.png" alt="MCP-Demo" style="flex: 1; height: 400px; object-fit: contain; margin-right: 1px;"/>
+</div>
+
+
+
 ## 📝 Citation
 
 If you find GELab-Zero useful for your research, please consider citing our work :)
 
 ```bibtex
+@misc{yan2025stepguitechnicalreport,
+      title={Step-GUI Technical Report}, 
+      author={Haolong Yan and Jia Wang and Xin Huang and Yeqing Shen and Ziyang Meng and Zhimin Fan and Kaijun Tan and Jin Gao and Lieyu Shi and Mi Yang and Shiliang Yang and Zhirui Wang and Brian Li and Kang An and Chenyang Li and Lei Lei and Mengmeng Duan and Danxun Liang and Guodong Liu and Hang Cheng and Hao Wu and Jie Dong and Junhao Huang and Mei Chen and Renjie Yu and Shunshan Li and Xu Zhou and Yiting Dai and Yineng Deng and Yingdan Liang and Zelin Chen and Wen Sun and Chengxu Yan and Chunqin Xu and Dong Li and Fengqiong Xiao and Guanghao Fan and Guopeng Li and Guozhen Peng and Hongbing Li and Hang Li and Hongming Chen and Jingjing Xie and Jianyong Li and Jingyang Zhang and Jiaju Ren and Jiayu Yuan and Jianpeng Yin and Kai Cao and Liang Zhao and Liguo Tan and Liying Shi and Mengqiang Ren and Min Xu and Manjiao Liu and Mao Luo and Mingxin Wan and Na Wang and Nan Wu and Ning Wang and Peiyao Ma and Qingzhou Zhang and Qiao Wang and Qinlin Zeng and Qiong Gao and Qiongyao Li and Shangwu Zhong and Shuli Gao and Shaofan Liu and Shisi Gao and Shuang Luo and Xingbin Liu and Xiaojia Liu and Xiaojie Hou and Xin Liu and Xuanti Feng and Xuedan Cai and Xuan Wen and Xianwei Zhu and Xin Liang and Xin Liu and Xin Zhou and Yingxiu Zhao and Yukang Shi and Yunfang Xu and Yuqing Zeng and Yixun Zhang and Zejia Weng and Zhonghao Yan and Zhiguo Huang and Zhuoyu Wang and Zheng Ge and Jing Li and Yibo Zhu and Binxing Jiao and Xiangyu Zhang and Daxin Jiang},
+      year={2025},
+      eprint={2512.15431},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2512.15431}, 
+}
+
 @software{gelab_zero_2025,
   title={GELab-Zero: An Advanced Mobile Agent Inference System},
   author={GELab Team},
@@ -588,23 +555,17 @@ If you find GELab-Zero useful for your research, please consider citing our work
   url={https://github.com/stepfun-ai/gelab-zero}
 }
 
-@inproceedings{gelab_mt_rl,
-  title={GUI Exploration Lab: Enhancing Screen Navigation in Agents via Multi-Turn Reinforcement Learning},
-  author={Yan, Haolong and Shen, Yeqing and Huang, Xin and Wang, Jia and Tan, Kaijun and Liang, Zhixuan and Li, Hongxin and Ge, Zheng and Yoshie, Osamu and Li, Si and others},
-  booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems}
+@misc{gelab_engine,
+      title={GUI Exploration Lab: Enhancing Screen Navigation in Agents via Multi-Turn Reinforcement Learning}, 
+      author={Haolong Yan and Yeqing Shen and Xin Huang and Jia Wang and Kaijun Tan and Zhixuan Liang and Hongxin Li and Zheng Ge and Osamu Yoshie and Si Li and Xiangyu Zhang and Daxin Jiang},
+      year={2025},
+      eprint={2512.02423},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2512.02423}, 
 }
 
 ```
-
-## 📧 Contact
-
-For questions and support, please contact: [tankaijun@stepfun.com]
-
-You can contact us and communicate with us by joining our WeChat group:
-
-| WeChat Group |
-|:-------------------------:|
-| <img src="images/wechat_group2.jpeg" width="200"> |
 
 ## ⭐ Star History
 
