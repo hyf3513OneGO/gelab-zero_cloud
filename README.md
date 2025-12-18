@@ -18,7 +18,8 @@
 
 ## 📰 News
 
-* 🎁 **[Coming Soon...]**
+* 🎁 **[2025-12-18]** We release our technical report on [**arXiv**](https://arxiv.org/abs/2512.15431)! Check out the details of GELab-Zero's architecture, training process, and benchmark results.
+* 🎁 **[2025-12-18]** We release a more powerful **API model** with enhanced performance for GUI automation tasks. [Apply for API access here](https://wvixbzgc0u7.feishu.cn/share/base/form/shrcnNStxEmuE7aY6jTW07CZHMf)!
 
 * 🎁 **[2025-12-12]** MCP-Server ready：
 
