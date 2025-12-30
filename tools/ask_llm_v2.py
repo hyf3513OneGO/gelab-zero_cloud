@@ -4,6 +4,7 @@ if "." not in sys.path:
 
 from megfile import smart_open
 import base64
+import os
 
 import openai
 import yaml
@@ -24,7 +25,12 @@ def ask_llm_anything(model_provider, model_name, messages, args= {
 
     if model_provider in model_config:
         openai.api_base = model_config[model_provider]["api_base"]
-        openai.api_key = model_config[model_provider]["api_key"]
+        # 优先从环境变量读取 API key，如果没有则使用配置文件中的值
+        if model_provider == "stepfun":
+            env_api_key = os.environ.get("STEPFUN_API_KEY")
+        else:
+            env_api_key = os.environ.get(f"{model_provider.upper()}_API_KEY")
+        openai.api_key = env_api_key if env_api_key else model_config[model_provider]["api_key"]
 
 
     else:
