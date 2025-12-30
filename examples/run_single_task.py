@@ -19,7 +19,7 @@ tmp_server_config = {
 local_model_config = {
     "task_type": "parser_0922_summary",
     "model_config": {
-        "model_name": "step-gui-1",
+        "model_name": "step-gui",
         "model_provider": "stepfun",
         "args": {
             "temperature": 0.1,
